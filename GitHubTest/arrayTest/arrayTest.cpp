@@ -191,6 +191,7 @@ void VoidTest()
 	VoidPrint(&a, 2);
 	VoidPrint(&n, 3);
 }
+  
 
 int main()
 {
