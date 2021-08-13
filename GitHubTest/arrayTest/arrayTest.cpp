@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <time.h>
 #include <string.h>
+
 //int arrayT()
 //{
 //	char str1[5] = "Good";
@@ -205,10 +206,26 @@ void array6T()
 //	VoidPrint(&a, 2);
 //	VoidPrint(&n, 3);
 //}
-  
+
+void streamTest()
+{
+	char buf[1024];
+	FILE* f = fopen("C:\\Users\\KOSTA\\Desktop\\aa","r");
+	while (true) 
+	{
+		fgets(buf, sizeof(buf), stdin);
+		if (strlen(buf) < 3);
+		{
+			break;
+		}
+		fputs("입력한 문자===========>", stdout);
+		fputs(buf, stdout);
+	}
+}
 
 int main()
 {
 	//VoidTest();
-	array6T();
+	//array6T();
+	streamTest();
 }
