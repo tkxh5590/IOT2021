@@ -5,97 +5,6 @@
 #include <time.h>
 #include <string.h>
 
-//int arrayT()
-//{
-//	char str1[5] = "Good";
-//	char str2[] = "morning";
-//	char str3[] = "afternoon";
-//	char str4[] = "evening";
-//	time_t timer;
-//	timer = time(NULL);
-//	struct tm* t;
-//	t = localtime(&timer);
-//
-//	if (t->tm_hour < 12 && t->tm_hour >= 6)
-//	{
-//		printf("%s %s\n", str1, str2);
-//	}
-//	else if (t->tm_hour < 18 && t->tm_hour >= 12)
-//	{
-//		printf("%s %s\n", str1, str3);
-//	}
-//	else if ((t->tm_hour < 24 && t->tm_hour >= 18) || (t->tm_hour < 6 && t->tm_hour >= 0))
-//	{
-//		printf("%s %s\n", str1, str4);
-//	}
-//
-//	printf("현재 시간 - %d : %d \n", t->tm_hour, t->tm_min);
-//	return 0;
-//}
-//
-//int array2T()
-//{
-//	int arr1[3][2] = { 1,2,3,4,5,6 };
-//
-//	printf("%x\n", *arr1[0]);
-//	printf("%x\n", *arr1[1]);
-//	printf("%x\n", *arr1[2]);
-//	printf("%x\n", arr1);
-//	return 0;
-//}
-//
-//int array3T()
-//{
-//	int i, j;
-//	char c_get;
-//	char arr1[100];
-//
-//	scanf("%s", arr1);
-//	for (i = 0; i < 100; i++)
-//	{
-//		if (arr1[i] == NULL)
-//		{
-//			j = i;
-//			i = 99;
-//		}
-//	}
-//
-//	for (i = 0; i < j; i++)
-//	{
-//		printf("%c ", arr1[i]);
-//	}
-//	for (;;)
-//	{
-//		c_get = getch();
-//		if ((((int)c_get) - 48) < j && (((int)c_get) - 48) > 0)
-//		{
-//			printf("\n%c", arr1[(((int)c_get) - 48)]);
-//		}
-//		if ((((int)c_get) - 48) == 0)
-//		{
-//			break;
-//		}
-//	}
-//	return 0;
-//}
-//
-//int array4T()
-//{
-//	int i, j;
-//	char arr1[100];
-//
-//	scanf("%s", arr1);
-//	for (i = 0; i < 100; i++)
-//	{
-//		if (arr1[i] == NULL)
-//		{
-//			j = i;
-//			printf("문자열의 길이 : %d", j);
-//			break;
-//		}
-//	}
-//	return 0;
-//}
 
 void array5T(int arr1[], int arr2[], const char* arr_n[])
 {
@@ -172,45 +81,105 @@ void array6T()
 		std_Iot[a].eng=arr_k[a];
 		std_Iot[a].kor=arr_e[a];
 	}
-	int arr1[50] = { 45,75,80,40,60,20,90,95,30,22,31,55,14,32,79,38,65,47,94,34,63,82,19,44 };
-	int arr2[50];
 	printf("순위  이름  국어  영어  합계 \n");
 	//array5T(std_Iot.kor, std_Iot.eng, std_Iot.name);
 }
 
-//void VoidPrint(void* p, int i)
-//{
-//	if (i == 1)
-//	{
-//		char* pc= (char*)p;
-//		printf("%s\n", *pc);
-//	}
-//	if (i == 2)
-//	{
-//		printf("%d\n", *(int*)p);
-//	}
-//	if (i == 3)
-//	{
-//		printf("%.3f", *(double*)p);
-//	}
-//}
-//
-//void VoidTest()
-//{
-//	char c = 'z';
-//	int a = 10;
-//	double n = 1.414;
-//
-//	void* vp;
-//	VoidPrint(&c, 1);
-//	VoidPrint(&a, 2);
-//	VoidPrint(&n, 3);
-//}
+void VoidPrint(void* p, int i)
+{
+	if (i == 1)
+	{
+		char* pc= (char*)p;
+		printf("%s\n", pc);
+	}
+	if (i == 2)
+	{
+		printf("%d\n", *(int*)p);
+	}
+	if (i == 3)
+	{
+		printf("%.3f\n", *(double*)p);
+	}
+}
 
+void VoidTest()
+{
+	char c[10] = { 'z' };
+	int a = 10;
+	double n = 1.414;
+
+	void* vp;
+	VoidPrint(&c, 1);
+	VoidPrint(&a, 2);
+	VoidPrint(&n, 3);
+}
+
+typedef struct {
+	int kor;
+	int eng;
+	char name[20];
+}stu;
 void streamTest()
 {
-	char buf[1024];
-	FILE* f = fopen("C:\\Users\\KOSTA\\Desktop\\aa","r");
+	stu STU[10];
+	char str_in[1024];
+
+
+	FILE* fin = fopen("C:\\Users\\Kim\\Desktop\\aa", "r");
+	FILE* fout = fopen("C:\\Users\\Kim\\Desktop\\aa1", "w+b");
+
+
+	for (int i = 0; i < 30; i++)
+	{
+		if (i < 10)
+		{
+			fscanf(fin, "%s", str_in);
+			strcpy(STU[i].name,str_in);
+			printf("%6s ", STU[i].name);
+			fprintf(fout, " %6s", STU[i].name);
+		}
+		else if (i >= 10 && i < 20)
+		{
+			if (i == 10)
+			{
+				printf("\n");
+				fprintf(fout, "\n");
+			}
+			fscanf(fin, "%d", &STU[i-10].kor);
+			printf("%6d ", STU[i - 10].kor);
+			fprintf(fout, " %6d", STU[i - 10].kor);
+		}
+		else if (i >= 20 && i < 30)
+		{
+			if (i == 20) 
+			{
+				printf("\n");
+				fprintf(fout, "\n");
+			}
+			fscanf(fin, "%d", &STU[i - 20].eng);
+			printf("%6d ", STU[i - 20].eng);
+			fprintf(fout, " %6d", STU[i - 20].eng);
+		}
+	}
+
+	printf("\n  이름     국어   영어 \n");
+	for (int i = 0; i < 10; i++)
+	{
+		printf("  %5s %6d %6d\n", STU[i].name, STU[i].kor, STU[i].eng);
+	}
+	/*for (int i = 0; i < 10; i++)
+	{
+		fscanf(fin, "%d", kor[i]);
+		printf("%d ", kor[i]);
+		fprintf(fout, " %d", kor[i]);
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		fscanf(fin, "%d", eng[i]);
+		printf("%d ", eng[i]);
+		fprintf(fout, " %d", eng[i]);
+	}
+
 	while (true) 
 	{
 		fgets(buf, sizeof(buf), stdin);
@@ -220,12 +189,31 @@ void streamTest()
 		}
 		fputs("입력한 문자===========>", stdout);
 		fputs(buf, stdout);
-	}
+	}*/
 }
 
 int main()
 {
-	//VoidTest();
-	//array6T();
-	streamTest();
+	printf("실행할 기능 \n1.VoidTest()\n2.array6T()\n3.streamTest()\n4.종료\n");
+	char aaa;
+	while (1)
+	{
+		aaa = getch();
+		if (aaa == '1')
+		{
+			VoidTest();
+		}
+		else if (aaa == '2')
+		{
+			array6T();
+		}
+		else if (aaa == '3')
+		{
+			streamTest();
+		}
+		else if(aaa == '4')
+		{
+			break;
+		}
+	}
 }
