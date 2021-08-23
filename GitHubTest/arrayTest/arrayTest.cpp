@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <time.h>
 #include <string.h>
+#include <iostream>
 
 
 void array5T(int arr1[], int arr2[], const char* arr_n[])
@@ -191,10 +192,68 @@ void streamTest()
 		fputs(buf, stdout);
 	}*/
 }
+#define KBD_BUF_SIZE 20
+#define MAX(x,y) (x>y)?x:y
+#define MIN(x,y) (x<y)?x:y
+
+//int Getint()
+//{
+//
+//}
+
+void StringParse()
+{
+	while (true)
+	{
+		int k; 
+		
+		int num1, num2;
+		float d_num1, d_num2;
+		char b;
+		printf("\n\n\n================\n"
+			"    1.정수(int)\n"
+			"    2.실수(double)\n"
+			"    3.문자열(공백포함)\n"
+			" ============================\n"
+			" Select Menu ");
+
+		scanf("%d", &k);
+
+		if (k == 1)
+		{
+			char buf[KBD_BUF_SIZE];
+			printf("정수를 입력하세요 : ");
+			scanf("%s", buf);
+			fgets(buf, KBD_BUF_SIZE, stdin);
+			int n = atoi(buf);
+			printf("반환된 정수 값 : %d \n", n);
+		}
+		else if (k == 2)
+		{
+			char buf[KBD_BUF_SIZE];
+			printf("실수를 입력하세요 : ");
+			scanf("%s", buf);
+			fgets(buf, KBD_BUF_SIZE, stdin);
+			double n = atof(buf);
+			printf("반환된 정수 값 : %f\n", n);
+		}
+		else if (k == 6)
+		{
+			printf("두개의 정수를 입력하세요 : ");
+			scanf("%d %d", &num1, &num2);
+			printf("입력한 정수 %d와 %d중 큰 수는 %d 입니다\n", num1, num2, MAX(num1, num2));
+			printf("두개의 실수를 입력하세요 : ");
+			scanf("%f %f", &d_num1, &d_num2);
+			printf("입력한 실수 %f와 %f중 작은 수는 %f 입니다\n", d_num1, d_num2, MIN(d_num1, d_num2));
+		}
+		else if (k == 0) { break; }
+	}
+}
 
 int main()
 {
-	printf("실행할 기능 \n1.VoidTest()\n2.array6T()\n3.streamTest()\n4.종료\n");
+	std::cout << "Hello C++ World!";
+	/*printf("실행할 기능 \n1.VoidTest()\n2.array6T()\n3.streamTest()\n4.StringParse()\n5.종료\n");
 	char aaa;
 	while (1)
 	{
@@ -211,9 +270,14 @@ int main()
 		{
 			streamTest();
 		}
-		else if(aaa == '4')
+		else if (aaa == '4')
+		{
+			StringParse();
+		}
+		else if(aaa == '5')
 		{
 			break;
 		}
-	}
+	}*/
+
 }
