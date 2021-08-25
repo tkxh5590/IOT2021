@@ -1,43 +1,89 @@
-﻿// ReferenceTest.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
-//
-
-#include <iostream>
+﻿#include <iostream>
+#include <stdio.h>
 #include "MyHeader.h"
+#include "Mylibrary.cpp"
 using namespace std;
+
+class Point
+{
+private:
+    int x, y;
+
+public:
+    int X() { return x; }
+    int Y() { return y; }
+    void SetX(int x) { this->x; }
+    void SetY(int y) { this->y; }
+    /*Point()
+    {
+        x = 0;
+        y = 0;
+    }*/
+
+    Point(int x = 0, int y = 0)
+    {
+        this->x = x;
+        this->y = y;
+    }
+
+    //Point(int x, int y) : x(x), y(y);  위와 동일
+
+
+    double dis(Point p)
+    {
+        int x2 = (x - p.x) * (x - p.x);
+        int y2 = (y - p.y) * (x - p.y);
+        double dist = sqrt(x2 + y2);
+        return dist;
+    }
+};
+
+class Point3D : public Point
+{
+private:
+    int z;
+
+public:
+    Point3D(int x = 0, int y = 0, int z = 0) : Point(x, y)
+    {
+        this->z = z;
+    }
+    int  Z() { return z; }
+    void SetZ(int z) { this->z; }
+    double dis(Point3D p)
+    {
+        int x2 = (X() - p.X()) * (X() - p.X());
+        int y2 = (Y() - p.Y()) * (Y() - p.Y());
+        int z2 = (Z() - p.Z()) * (Z() - p.Z());
+        return sqrt(x2 + y2 + z2);
+    }
+};
 
 int main()
 {
-    cout << "Hello C Plus Plus World!\n";
-    int a = 10, b = 20;
+    //cout << "Hello C Plus Plus World!\n";
+    //int a = 10, b = 20;
+    //cout << "초기값은 a = " << a << ", b = " << b << endl;
+    //swapValue(a, b);
+    //cout << "swapValue(a, b)의 결과값값은 a = " << a << ", b = " << b << endl;
+    //swapRef(a, b);
+    //cout << "swapRef(a, b)의 결과값은 a = " << a << ", b = " << b << endl;
+    //swapRef(&a, &b);
+    //cout << "swapRef(&a, &b)의 결과값은 a = " << a << ", b = " << b << endl;
 
-    cout << "초기값은 a = " << a << ", b = " << b << endl;
-    swapValue(a, b);
-    cout << "swapValue(a, b)의 결과값값은 a = " << a << ", b = " << b << endl;
-    swapRef(a, b);
-    cout << "swapRef(a, b)의 결과값은 a = " << a << ", b = " << b << "\n";
+    Point p1;
+    Point p2(10, 20);
+    Point *p3 = new Point(30,40);
+    cout << "두점 p1(" << p1.X() << "," << p1.Y() << "),p2(" << p2.X() << "," << p2.Y() << ")의 거리는 " << p1.dis(p2) << "입니다." << endl;
+    cout << "Point Class 변수의 동적 할당  p3(" << p3->X() << "," << p3->Y() << ")" << endl;
+    cout << "두점 p1(" << p1.X() << "," << p1.Y() << "),p3(" << p3->X() << "," << p3->Y() << ")의 거리는 " << p1.dis(*p3) << "입니다." << endl;
+
+
+
+    Point3D p3D1;
+    Point3D p3D2(10, 20, 30);
+    Point3D * p3D3 = new Point3D(30, 50, 70);
+    cout << "두점 p3D1(" << p3D1.X() << "," << p3D1.Y() << "," << p3D1.Z() << "),p3D2(" << p3D2.X() << "," << p3D2.Y() << "," << p3D2.Z() << ")의 거리는 " << p3D1.dis(p3D2) << "입니다." << endl;
+    cout << "Point Class 변수의 동적 할당  p3(" << p3->X() << "," << p3->Y() << ")" << endl;
+    cout << "두점 p3D1(" << p3D1.X() << "," << p3D1.Y() << "," << p3D1.Z() << "),p3D3(" << p3D3->X() << "," << p3D3->Y() << "," << p3D3->Z() << ")의 거리는 " << p3D1.dis(*p3D3) << "입니다." << endl;
 }
-
-void swapValue(int a, int  b)
-{
-    int i = a;
-    a = b;
-    b = i;
-}
-
-void swapRef(int& a, int& b)
-{
-    int i = a;
-    a = b;
-    b = i;
-}
-
-// 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
-// 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
-
-// 시작을 위한 팁: 
-//   1. [솔루션 탐색기] 창을 사용하여 파일을 추가/관리합니다.
-//   2. [팀 탐색기] 창을 사용하여 소스 제어에 연결합니다.
-//   3. [출력] 창을 사용하여 빌드 출력 및 기타 메시지를 확인합니다.
-//   4. [오류 목록] 창을 사용하여 오류를 봅니다.
-//   5. [프로젝트] > [새 항목 추가]로 이동하여 새 코드 파일을 만들거나, [프로젝트] > [기존 항목 추가]로 이동하여 기존 코드 파일을 프로젝트에 추가합니다.
-//   6. 나중에 이 프로젝트를 다시 열려면 [파일] > [열기] > [프로젝트]로 이동하고 .sln 파일을 선택합니다.

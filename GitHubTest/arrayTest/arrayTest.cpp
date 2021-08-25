@@ -162,7 +162,6 @@ void streamTest()
 			fprintf(fout, " %6d", STU[i - 20].eng);
 		}
 	}
-
 	printf("\n  이름     국어   영어 \n");
 	for (int i = 0; i < 10; i++)
 	{
