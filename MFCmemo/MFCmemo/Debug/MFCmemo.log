@@ -1,0 +1,6 @@
+﻿  MFCmemo.cpp
+  MFCmemoDlg.cpp
+C:\Users\Kim\source\repos\MFCmemo\MFCmemo\MFCmemoDlg.cpp(177,25): warning C4805: '==': 연산에 'int' 형식과 'bool' 형식을 함께 사용하는 것은 안전하지 않습니다.
+C:\Users\Kim\source\repos\MFCmemo\MFCmemo\MFCmemoDlg.cpp(182,30): warning C4805: '==': 연산에 'int' 형식과 'bool' 형식을 함께 사용하는 것은 안전하지 않습니다.
+  코드를 생성하고 있습니다...
+  MFCmemo.vcxproj -> C:\Users\Kim\source\repos\MFCmemo\Debug\MFCmemo.exe
